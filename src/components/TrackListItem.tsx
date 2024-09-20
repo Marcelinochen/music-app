@@ -11,10 +11,12 @@ export type TrackListItemProps = {
 export const TrackListItem = ({track}: TrackListItemProps) => {
     const isActiveTrack = false    
 
-    return <TouchableHighlight>
+    return ( 
+    <TouchableHighlight>
+        <View style={styles.trackItemContainer} >
         <View>
-            <View>
-                <FastImage source={{
+            <FastImage 
+                source={{
                     uri: track.image ?? unknownTrackImageUri,
                     priority: FastImage.priority.normal,
                 }} 
@@ -23,29 +25,39 @@ export const TrackListItem = ({track}: TrackListItemProps) => {
                     ...styles.trackArtworkImage,
                     opacity: isActiveTrack ? 0.6 : 1,
                 }}
-                /> 
-            </View>
+            /> 
+        </View>
 
-            {/* Track title + artist */}
-            <View style={{width: '100%' }}>
-                <Text numberOfLines={1}
-                    style={{
-                        ...styles.trackTitleText,
-                        color: isActiveTrack ? colors.primary: colors.text,
-        
-                    }}
-                >{track.title}
-                </Text>
+        {/* Track title + artist */}
+        <View style={{width: '100%' }}>
+            <Text 
+                numberOfLines={1}
+                style={{
+                    ...styles.trackTitleText,
+                    color: isActiveTrack ? colors.primary: colors.text,
+                }}
+            >
+                {track.title}
+            </Text>
 
                 {track.artist && (
-                    <Text numberOfLines={1} style={styles.trackArtistText}>{track.artist}</Text>
+                    <Text numberOfLines={1} style={styles.trackArtistText}>
+                        {track.artist}
+                    </Text>
                 )}
-            </View>
+        </View>
         </View>
     </TouchableHighlight>
+    )
 }
 
 const styles = StyleSheet.create({
+    trackItemContainer: {
+        flexDirection: 'row',
+        columnGap: 14,
+        alignItems: 'center',
+        paddingRight: 20,
+    },
     trackArtworkImage: {
         borderRadius: 0,
         width: 50,
