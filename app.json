@@ -13,7 +13,10 @@
       "backgroundColor": "#000"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "UIbackgroundModes": ["audio"]
+      }
     },
     "android": {
       "adaptiveIcon": {
